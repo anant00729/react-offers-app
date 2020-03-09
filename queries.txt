@@ -1,0 +1,24 @@
+INSERT INTO public.offers(
+	"mainOfferID", "offerImages", "offerTitle", description, "tAndC", "availSteps", "expiryDate", "createdOn", "updatedOn")
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+
+  INSERT INTO public.offers(
+	"mainOfferID", "offerImages", "offerTitle", description, "tAndC", "availSteps", "expiryDate", "createdOn", "updatedOn")
+	VALUES ('Demo1', '{ "customer": "John Doe", "items": {"product": "Beer","qty": 6}}', 'one', 'onedesc', 'as', 'asd', '2013-06-01', '2013-06-01', '2013-06-01');
+
+
+
+
+	axios": "^0.18.0",
+classnames jwt-decode react react-dom react-redux react-router-dom react-scripts redux redux-thunk
+
+
+
+http://tcp-wi-cos-ofeng1.westindia.cloudapp.azure.com:8100/tcpapi/offerservice/api/v1/brandAndCategoriesOnOffer
+
+
+http://tcp-wi-cos-ofeng1.westindia.cloudapp.azure.com:8100/tcpapi/offerservice/api/v1/brandandcategoriesonoffer
+
+
+

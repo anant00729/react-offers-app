@@ -1,0 +1,124 @@
+.h-14 {
+  height: 3.5rem;
+}
+
+.body-main-bar{
+  height: 16rem;
+  background-color: #0061f2;
+  background-image: linear-gradient(135deg, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%);
+}
+
+
+
+.heart-beat path {
+  fill: #fff;
+  background-color: #000;
+}
+
+.text-alfa{
+  color: rgba(255,255,255,0.5);
+}
+.white-trans-500{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.app-primary-font {
+  color: #0061f2;
+}
+
+.app-bg-trans-200{
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+
+.padding-main-cards-r {
+  padding-right: 0.625rem;
+}
+
+.padding-main-cards-l {
+  padding-right: 0.625rem;
+}
+
+.pt-14{
+  padding-top: 3.5rem;
+}
+
+.top-bar-bg{
+  background: #202020;
+}
+
+.side-bar-bg{
+  background: #363636;
+}
+
+
+.table-img-width{
+  width: 15rem;
+}
+
+
+.side-menu-selected {
+  background-color: #0061f2;
+}
+
+
+@media (min-width: 768px)
+{
+  .side-top-padding{
+    padding-top: 3.5rem;
+  }
+}
+
+.side-navbutton:hover{
+  background-color: #0061f2;
+}
+
+
+/* Snack Start */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* Snack End */
