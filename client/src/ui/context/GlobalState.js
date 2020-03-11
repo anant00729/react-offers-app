@@ -1,7 +1,7 @@
 import React ,{createContext, useReducer} from 'react'
 import AppReducer from './AppReducer'
 import { R_HOME , R_ALL_OFFERS , R_ADD_OFFER, SET_SIDE_MENU_OPTIONS, GET_ALL_OFFERS, SHOW_ERROR, ADD_OFFER,
-  DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST
+  DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,DISMISS_APP_DIALOG,SHOW_APP_DIALOG
 } from './AAApConstants'
 
 
@@ -15,7 +15,8 @@ const initState = {
   errorMessage: '',
   isCollected :false,
   displayToastGlobal : false,
-  toastMessage  : ''
+  toastMessage  : '',
+  showModal : 'opacity-0 pointer-events-none'
 }
 
 // Create global context
@@ -117,6 +118,22 @@ export const GlobalProvider = ({ children }) => {
     })
   }
 
+  // dismiss app dialog
+  function setDismissDialog() {
+    dispatch({
+      type : DISMISS_APP_DIALOG, 
+      payload : ''
+    })
+  }
+  // show app dialog
+  function setShowDialog() {
+    console.log('opacity-0 pointer-events-none')
+    dispatch({
+      type : SHOW_APP_DIALOG, 
+      payload : 'opacity-0 pointer-events-none'
+    })
+  }
+
   return (
     <GlobalContext.Provider value={
       {
@@ -132,7 +149,10 @@ export const GlobalProvider = ({ children }) => {
         displayToastGlobal : state.displayToastGlobal,
         toastMessage : state.toastMessage,
         setDismissToast,
-        setShowToast
+        setShowToast,
+        showModal: state.showModal,
+        setDismissDialog,
+        setShowDialog
       }}>
       {children}
     </GlobalContext.Provider>

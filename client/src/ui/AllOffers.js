@@ -11,7 +11,7 @@ function _displayError(error){
   )
 }
 
-function _displayMainData(allOffers) {
+function _displayMainData(allOffers, setShowDialog) {
   let tdJSX = []
 
   if(allOffers){
@@ -20,8 +20,8 @@ function _displayMainData(allOffers) {
         <tr>
           <td className="border px-4 py-2 table-img-width">
             <img 
-          className="h-32"
-          src="https://startbootstrap.com/assets/img/screenshots/premium/sb-admin-pro-angular.jpg" alt="offer_img"/>
+            className="h-32"
+            src="https://startbootstrap.com/assets/img/screenshots/premium/sb-admin-pro-angular.jpg" alt="offer_img"/>
           </td>
           <td className="border px-4 py-2">{offer.offerTitle}</td>
           <td className="border px-4 py-2">
@@ -33,6 +33,12 @@ function _displayMainData(allOffers) {
             <button className="bg-transparent hover:bg-red-500 text-red-700  hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded text-sm">
               Delete
             </button>
+          </td>
+          <td className="border px-4 py-2">
+            <img 
+             onClick={setShowDialog} 
+            className="h-32"
+            src={`http://localhost:8087/${offer.offerQrCodePath}`} alt="offer_img"/>
           </td>
         </tr>
       )
@@ -64,6 +70,7 @@ function _displayMainData(allOffers) {
                   <td className="px-4 py-2">Title</td>
                   <td className="px-4 py-2">Edit</td>
                   <td className="px-4 py-2">Delete</td>
+                  <td className="px-4 py-2">QR Code</td>
                 </tr>
               </thead>
               <tbody>
@@ -78,7 +85,7 @@ function _displayMainData(allOffers) {
 
 export const AllOffers = () => {
 
-  const {getAllOffers, allOffers, errorMessage} = useContext(GlobalContext)
+  const {getAllOffers, allOffers, errorMessage, setShowDialog} = useContext(GlobalContext)
 
   useEffect(()=> {
     getAllOffers()
@@ -87,7 +94,7 @@ export const AllOffers = () => {
   if(errorMessage.length != 0){
     return _displayError(errorMessage)
   }else {
-    return _displayMainData(allOffers)
+    return _displayMainData(allOffers, setShowDialog)
   }
   
 }

@@ -3,6 +3,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./config/database')
+const qrcode = require('qrcode')
+const fs = require('fs')
+
+
+
 // const path = require('path')
 // const request = require('request')
 // const http = require('http') 
@@ -29,7 +34,31 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 
+app.use(express.static('public/build'));
+app.use(express.static('public'));
+
+
 app.use('/offers', offersRoute)
+
+
+app.get('/generateQRCode' , async (req,res)=>{
+  let qrRes = await qrcode.toDataURL('http://tcp.com/TD_Demo1');
+  let base64Image = qrRes.split(';base64,').pop();
+
+  fs.writeFile('image.png', base64Image, {encoding: 'base64'}, function(err) {
+    if(err) {
+      res.json({status : false , message : err.message})
+    }
+    res.json({status : true , message : 'File Created Please check'})
+
+  });
+
+
+  // var createStream = fs.createWriteStream("JournalDEV.txt");
+  // createStream.end();
+
+  //fs.writeFileSync('./qr.html', `<img src="${res}">`);
+})
 
 app.get('*', (req,res)=> {
   res.json({

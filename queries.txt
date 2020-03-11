@@ -10,6 +10,11 @@ INSERT INTO public.offers(
 
 
 
+
+ALTER TABLE public.offers 
+RENAME offerId TO offerID;
+
+
 	axios": "^0.18.0",
 classnames jwt-decode react react-dom react-redux react-router-dom react-scripts redux redux-thunk
 
@@ -22,3 +27,32 @@ http://tcp-wi-cos-ofeng1.westindia.cloudapp.azure.com:8100/tcpapi/offerservice/a
 
 
 
+INSERT INTO public.offers(
+      "mainOfferID", 
+      "offerImages", 
+      "offerTitle", 
+      "description", 
+      "tAndC", 
+      "availSteps", 
+      "expiryDate", 
+      "createdOn", 
+      "updatedOn",
+      "offerQrCodePath"
+      )
+      VALUES (
+	'TD_Demo103',
+			'asd',
+			'asdsad',
+			'asdsad',
+			'',
+			'',
+			'11-3-2020',
+			'11-3-2020',
+			'11-3-2020',
+			'11-3-2020',
+			'http://tcp.com/TD_Demo103'
+      );
+
+
+
+			{"latitude":18.9371166,"longitude":72.8348053}

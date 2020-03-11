@@ -5,7 +5,7 @@ class Offer {
   static async save(o){
 
     const {
-      mainOfferID ,offerImages, offerTitle, description, tAndC, availSteps, expiryDate, createdOn, updatedOn
+      mainOfferID ,offerImages, offerTitle, description, tAndC, availSteps, expiryDate, createdOn, updatedOn, offerQrCodePath
     } = o
     
     let q1 = `INSERT INTO public.offers(
@@ -17,7 +17,9 @@ class Offer {
       "availSteps", 
       "expiryDate", 
       "createdOn", 
-      "updatedOn")
+      "updatedOn",
+      "offerQrCodePath"
+      )
       VALUES (
       (:mainOfferID),
       (:offerImages),
@@ -27,14 +29,15 @@ class Offer {
       (:availSteps),
       (:expiryDate),
       (:createdOn),
-      (:updatedOn)
+      (:updatedOn),
+      (:offerQrCodePath)
       );`
 
       try {
         
         await db.query(q1,{
           replacements : {
-           mainOfferID, offerImages : JSON.stringify(offerImages), offerTitle, description, tAndC, availSteps, expiryDate, createdOn, updatedOn
+           mainOfferID, offerImages : JSON.stringify(offerImages), offerTitle, description, tAndC, availSteps, expiryDate, createdOn, updatedOn, offerQrCodePath
           }
         })
         return { status : true , message : 'Offer Added' , offer : o }

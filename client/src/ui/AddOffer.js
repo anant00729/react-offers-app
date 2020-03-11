@@ -7,6 +7,7 @@ export const AddOffer = (props) => {
 
   const [offerTitle, setOfferTitle] = useState('')
   const [offerDescription, setOfferDescription] = useState('')
+  const [offerOfferId, setOfferOfferId] = useState('')
   const [isCollected, setIsCollected] = useState(false)
 
   const {errorMessage, addOffer, setShowToast, toastMessage, setSideMenuButtons} = useContext(GlobalContext)
@@ -23,7 +24,8 @@ export const AddOffer = (props) => {
     }else {
       const offer = {
         offerTitle,
-        description : offerDescription
+        description : offerDescription,
+        mainOfferID : offerOfferId
       }
       addOffer(offer)
     }
@@ -66,6 +68,18 @@ export const AddOffer = (props) => {
                         <form
                           onSubmit={onSubmit}
                          className="p-4">
+                           <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                              Offer ID
+                            </label>
+                            <input 
+                            value={offerOfferId}
+                            onChange={(e)=> setOfferOfferId(e.target.value)}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="username" 
+                            type="text" 
+                            placeholder="Offer ID"/>
+                          </div>
                           <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                               Title

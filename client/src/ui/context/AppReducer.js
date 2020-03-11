@@ -1,6 +1,6 @@
 import {SET_SIDE_MENU_OPTIONS, GET_ALL_OFFERS, SHOW_ERROR, 
   ADD_OFFER, DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,
-  MSG_OFFER_ADDED
+  MSG_OFFER_ADDED, DISMISS_APP_DIALOG, SHOW_APP_DIALOG
 } from './AAApConstants'
 
 
@@ -55,6 +55,14 @@ export default (state , action) => {
         ...state,
         displayToastGlobal : true,
         toastMessage : payload
+      }
+
+    case SHOW_APP_DIALOG:
+    case DISMISS_APP_DIALOG:
+      console.log('payload', payload)
+      return {
+        ...state,
+        showModal : payload
       }
 
     default:

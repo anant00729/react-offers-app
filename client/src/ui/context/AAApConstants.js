@@ -11,6 +11,8 @@ export const ADD_OFFER = 'ADD_OFFER'
 export const SHOW_ERROR = 'SHOW_ERROR'
 export const DISMISS_ERROR_TOAST = 'DISMISS_ERROR_TOAST'
 export const SHOW_ERROR_TOAST = 'SHOW_ERROR_TOAST'
+export const DISMISS_APP_DIALOG = 'DISMISS_APP_DIALOG'
+export const SHOW_APP_DIALOG = 'SHOW_APP_DIALOG'
 
 
 // Message Constants 
