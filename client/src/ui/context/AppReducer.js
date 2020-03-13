@@ -59,7 +59,6 @@ export default (state , action) => {
 
     case SHOW_APP_DIALOG:
     case DISMISS_APP_DIALOG:
-      console.log('payload', payload)
       return {
         ...state,
         showModal : payload

@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react'
-import lifeImg from '../app_images/life.svg'
-import {GlobalContext} from './context/GlobalState'
+import lifeImg from '../../app_images/life.svg'
+import {GlobalContext} from '../context/GlobalState'
 
 
 function _displayError(error){
@@ -13,6 +13,7 @@ function _displayError(error){
 
 function _displayMainData(allOffers, setShowDialog) {
   let tdJSX = []
+  
 
   if(allOffers){
     tdJSX = allOffers.map((offer)=>{
@@ -37,7 +38,7 @@ function _displayMainData(allOffers, setShowDialog) {
           <td className="border px-4 py-2">
             <img 
              onClick={setShowDialog} 
-            className="h-32"
+            className="h-32 cursor-pointer"
             src={`http://localhost:8087/${offer.offerQrCodePath}`} alt="offer_img"/>
           </td>
         </tr>
@@ -87,6 +88,7 @@ export const AllOffers = () => {
 
   const {getAllOffers, allOffers, errorMessage, setShowDialog} = useContext(GlobalContext)
 
+  
   useEffect(()=> {
     getAllOffers()
   }, [])

@@ -13,7 +13,7 @@ exports.addOffer = async (req,res) => {
   const date = new Date()
 
 
-  const currentDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+  const currentDate = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`
   
   
   const mainOfferID = req.body.mainOfferID || ''
@@ -28,7 +28,6 @@ exports.addOffer = async (req,res) => {
   let offerQrCodePath = `/${mainOfferID}.png`
   
 
-  
 
   let qrRes = await qrcode.toDataURL(`http://tcp.com/${mainOfferID}`);
   let base64Image = qrRes.split(';base64,').pop();

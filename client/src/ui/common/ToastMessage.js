@@ -16,10 +16,6 @@ export const ToastMessage = () => {
   }, [displayToastGlobal])
 
 
-
-  console.log('displayToastGlobal', displayToastGlobal)
-  console.log('toastMessage', toastMessage)
-
   return (
     <>
       <div id="snackbar" className={`${displayToastGlobal ? "show" : ""}`}>{toastMessage}</div>

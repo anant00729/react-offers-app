@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import lifeImg from '../app_images/life.svg'
-import {GlobalContext} from './context/GlobalState'
-import {MSG_OFFER_ADDED, R_ALL_OFFERS} from '../ui/context/AAApConstants'
+import lifeImg from '../../app_images/life.svg'
+import {GlobalContext} from '../context/GlobalState'
+import {MSG_OFFER_ADDED, R_ALL_OFFERS} from '../context/AAApConstants'
 
 export const AddOffer = (props) => {
 

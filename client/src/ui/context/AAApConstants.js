@@ -17,4 +17,6 @@ export const SHOW_APP_DIALOG = 'SHOW_APP_DIALOG'
 
 // Message Constants 
 export const MSG_OFFER_ADDED = "Offer Added Successfully" 
+export const DISMISS_CLASS = "opacity-0 pointer-events-none" 
+
 
