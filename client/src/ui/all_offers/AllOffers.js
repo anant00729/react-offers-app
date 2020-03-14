@@ -39,7 +39,7 @@ function _displayMainData(allOffers, setShowDialog) {
             <img 
              onClick={setShowDialog} 
             className="h-32 cursor-pointer"
-            src={`http://localhost:8087/${offer.offerQrCodePath}`} alt="offer_img"/>
+            src={`https://offers-a.herokuapp.com${offer.offerQrCodePath}`} alt="offer_img"/>
           </td>
         </tr>
       )
