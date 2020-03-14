@@ -1,7 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
-import {R_HOME , R_ADD_OFFER , R_ALL_OFFERS} from '../context/AAApConstants'
 import { GlobalContext } from '../context/GlobalState'
 
 

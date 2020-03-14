@@ -16,9 +16,9 @@ function _displayMainData(allOffers, setShowDialog) {
   
 
   if(allOffers){
-    tdJSX = allOffers.map((offer)=>{
+    tdJSX = allOffers.map((offer, index)=>{
       return (
-        <tr>
+        <tr key={index}>
           <td className="border px-4 py-2 table-img-width">
             <img 
             className="h-32"

@@ -8,9 +8,9 @@ export const AddOffer = (props) => {
   const [offerTitle, setOfferTitle] = useState('')
   const [offerDescription, setOfferDescription] = useState('')
   const [offerOfferId, setOfferOfferId] = useState('')
-  const [isCollected, setIsCollected] = useState(false)
+  
 
-  const {errorMessage, addOffer, setShowToast, toastMessage, setSideMenuButtons} = useContext(GlobalContext)
+  const {addOffer, setShowToast, toastMessage, setSideMenuButtons} = useContext(GlobalContext)
 
 
   const onSubmit = e => {

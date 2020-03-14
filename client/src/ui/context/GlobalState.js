@@ -1,8 +1,6 @@
 import React ,{createContext, useReducer} from 'react'
 import AppReducer from './AppReducer'
-import { R_HOME , R_ALL_OFFERS , R_ADD_OFFER, SET_SIDE_MENU_OPTIONS, GET_ALL_OFFERS, SHOW_ERROR, ADD_OFFER,
-  DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,DISMISS_APP_DIALOG,SHOW_APP_DIALOG,DISMISS_CLASS
-} from './AAApConstants'
+import { R_ALL_OFFERS , R_ADD_OFFER,DISMISS_CLASS} from './AAApConstants'
 import CommonActions from './actions/CommonActions'
 import AddOfferActions from '../add_offer/AddOfferActions'
 import AllOffersActions from '../all_offers/AllOffersActions'

@@ -1,10 +1,10 @@
 import React from 'react'
 import {AddOffer} from '../add_offer/AddOffer'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {  Route } from 'react-router-dom'
 import { AllOffers } from '../all_offers/AllOffers'
 import SideMenu from '../common/SideMenu'
 import {withRouter} from 'react-router-dom'
-import {R_HOME , R_ADD_OFFER , R_ALL_OFFERS} from '../context/AAApConstants'
+import {R_ADD_OFFER , R_ALL_OFFERS} from '../context/AAApConstants'
 
 
 

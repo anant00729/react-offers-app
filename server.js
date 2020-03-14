@@ -60,11 +60,25 @@ app.get('/generateQRCode' , async (req,res)=>{
   //fs.writeFileSync('./qr.html', `<img src="${res}">`);
 })
 
+
+app.use(express.static('public/build'));
+app.use(express.static('public'));
+
+
+
 app.get('*', (req,res)=> {
-  res.json({
-    message : "Welcome to the rest API of Offers"
-  })
+    ///app.use(express.static('public/build'))
+    //res.sendFile(path.join(__dirname+'/public/build/index.html'));
+    
+    res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
+    //res.sendFile(path.resolve(__dirname, 'public/build', 'index.html'))
 })
+
+// app.get('*', (req,res)=> {
+//   res.json({
+//     message : "Welcome to the rest API of Offers"
+//   })
+// })
 
 const port = process.env.PORT || 8087
 
