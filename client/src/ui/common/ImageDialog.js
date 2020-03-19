@@ -77,7 +77,7 @@ export const ImageDialog = () => {
 
         <img 
         className="w-56 mx-auto"
-        src={`http://localhost:8087${offerQrCodePath}`}
+        src={`https://offers-a.herokuapp.com${offerQrCodePath}`}
         alt="image_dailog"/>
 
         
