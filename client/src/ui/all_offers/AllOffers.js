@@ -11,7 +11,7 @@ function _displayError(error){
   )
 }
 
-function _displayMainData(allOffers, setShowDialog) {
+function _displayMainData(allOffers, showImageDialog) {
   let tdJSX = []
   
 
@@ -35,12 +35,12 @@ function _displayMainData(allOffers, setShowDialog) {
               Delete
             </button>
           </td>
-          <td className="border px-4 py-2">
+          <td className="border px-4 py-2 table-qr-width">
             <img 
-             onClick={setShowDialog} 
+             onClick={() => showImageDialog(offer)} 
             className="h-32 cursor-pointer"
             
-            src={`https://offers-a.herokuapp.com${offer.offerQrCodePath}`} alt="offer_img"/>
+            src={`http://localhost:8087${offer.offerQrCodePath}`} alt="offer_img"/>
           </td>
         </tr>
       )
@@ -87,7 +87,7 @@ function _displayMainData(allOffers, setShowDialog) {
 
 export const AllOffers = () => {
 
-  const {getAllOffers, allOffers, errorMessage, setShowDialog} = useContext(GlobalContext)
+  const {getAllOffers, allOffers, errorMessage, showImageDialog} = useContext(GlobalContext)
 
   
   useEffect(()=> {
@@ -97,7 +97,7 @@ export const AllOffers = () => {
   if(errorMessage.length != 0){
     return _displayError(errorMessage)
   }else {
-    return _displayMainData(allOffers, setShowDialog)
+    return _displayMainData(allOffers, showImageDialog)
   }
   
 }

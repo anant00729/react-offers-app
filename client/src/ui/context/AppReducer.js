@@ -1,6 +1,7 @@
 import {SET_SIDE_MENU_OPTIONS, GET_ALL_OFFERS, SHOW_ERROR, 
   ADD_OFFER, DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,
-  MSG_OFFER_ADDED, DISMISS_APP_DIALOG, SHOW_APP_DIALOG
+  MSG_OFFER_ADDED, DISMISS_APP_DIALOG, SHOW_APP_DIALOG, 
+  DISMISS_IMG_DIALOG, SHOW_IMG_DIALOG
 } from './AAApConstants'
 
 
@@ -63,6 +64,26 @@ export default (state , action) => {
         ...state,
         showModal : payload
       }
+
+
+    case SHOW_IMG_DIALOG:
+    console.log('payload SHOW_IMG_DIALOG', payload)
+
+    let changedState = {
+      ...state,
+      showImageModal : payload.payload,
+      selectedOffer : payload.offer
+    }
+    console.log('changedState', changedState)
+    return changedState
+        
+    case DISMISS_IMG_DIALOG:
+    console.log('payload DISMISS_IMG_DIALOG', payload)
+    return {
+      ...state,
+      showImageModal : payload.payload,
+      selectedOffer : {}
+    }
 
     default:
       return state

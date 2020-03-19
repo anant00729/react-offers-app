@@ -56,3 +56,12 @@ INSERT INTO public.offers(
 
 
 			{"latitude":18.9371166,"longitude":72.8348053}
+
+
+
+
+
+
+
+
+

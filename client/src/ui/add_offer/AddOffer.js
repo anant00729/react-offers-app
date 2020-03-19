@@ -16,9 +16,11 @@ export const AddOffer = (props) => {
   const onSubmit = e => {
     e.preventDefault()
 
-    if(offerTitle.length === 0){
+    if(offerOfferId.length === 0){
+      setShowToast('Please enter Offer ID')
+    }
+    else if(offerTitle.length === 0){
       setShowToast('Please enter Offer Title')
-
     }else if(offerDescription.length === 0){
       setShowToast('Please enter Offer Description')
     }else {

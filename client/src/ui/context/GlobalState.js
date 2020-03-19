@@ -13,11 +13,14 @@ const initState = {
     { name : "Add Offer" , isSelected : false, rName : R_ADD_OFFER } ,
   ],
   allOffers : [],
+  selectedOffer : {},
+
   errorMessage: '',
   isCollected :false,
   displayToastGlobal : false,
   toastMessage  : '',
-  showModal : DISMISS_CLASS
+  showModal : DISMISS_CLASS,
+  showImageModal : DISMISS_CLASS
 }
 
 // Create global context
@@ -27,7 +30,7 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer , initState) 
 
   let { setSideMenuButtons, setDismissToast, setShowToast,
-        setDismissDialog, setShowDialog}  = new CommonActions(dispatch)
+        setDismissDialog, setShowDialog, dismissImageDialog, showImageDialog}  = new CommonActions(dispatch)
 
   let { addOffer }  = new AddOfferActions(dispatch)
   let { getAllOffers }  = new AllOffersActions(dispatch)
@@ -43,6 +46,9 @@ export const GlobalProvider = ({ children }) => {
         getAllOffers,
         addOffer,
 
+        // Selected Offer 
+        selectedOffer : state.selectedOffer,
+
         // Default/Common States
         errorMessage : state.errorMessage,
         isCollected : state.isCollected,
@@ -51,8 +57,14 @@ export const GlobalProvider = ({ children }) => {
         setDismissToast,
         setShowToast,
         showModal: state.showModal,
+        showImageModal: state.showImageModal,
+        // App Dialog
         setDismissDialog,
-        setShowDialog
+        setShowDialog,
+        // Image Dialog
+        dismissImageDialog,
+        showImageDialog
+
       }}>
       {children}
     </GlobalContext.Provider>

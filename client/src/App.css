@@ -56,6 +56,10 @@
   width: 15rem;
 }
 
+.table-qr-width{
+  width: 10rem;
+}
+
 
 .side-menu-selected {
   background-color: #0061f2;

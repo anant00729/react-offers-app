@@ -10,8 +10,6 @@ import {R_ADD_OFFER , R_ALL_OFFERS} from '../context/AAApConstants'
 
 function AppBody (props) {
 
-  
-
   return (
     <div>
     <section className="main-body flex">

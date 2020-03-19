@@ -1,5 +1,6 @@
 import { SET_SIDE_MENU_OPTIONS, 
-  DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,DISMISS_APP_DIALOG,SHOW_APP_DIALOG,DISMISS_CLASS
+  DISMISS_ERROR_TOAST, SHOW_ERROR_TOAST,DISMISS_APP_DIALOG,SHOW_APP_DIALOG,DISMISS_CLASS,
+  DISMISS_IMG_DIALOG, SHOW_IMG_DIALOG
 } from '../../context/AAApConstants'
 
 
@@ -43,6 +44,31 @@ class CommonActions {
     this.dispatch({
       type : SHOW_APP_DIALOG, 
       payload : ''
+    })
+  }
+
+  // dismiss app dialog
+  dismissImageDialog = () => {
+    const payload = {
+      payload : DISMISS_CLASS,
+      offer : {}
+    }
+    this.dispatch({
+      type : DISMISS_IMG_DIALOG, 
+      payload : payload
+      })
+  }
+  // show app dialog
+  showImageDialog = (offer) => {
+    
+    let payload = {
+      payload : '',
+      offer : offer
+    }
+    console.log('payload', payload)
+    this.dispatch({
+      type : SHOW_IMG_DIALOG, 
+      payload : payload
     })
   }
 
