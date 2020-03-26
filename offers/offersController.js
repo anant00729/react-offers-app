@@ -1,6 +1,8 @@
 const Offer = require('./models/Offer')
 const qrcode = require('qrcode')
 const fs = require('fs')
+const fetch = require('node-fetch')
+const FormData = require('form-data');
 
 
 exports.getAllOffers = async (req,res) => {
@@ -29,33 +31,68 @@ exports.addOffer = async (req,res) => {
   const createdOn = req.body.createdOn || currentDate
   const updatedOn = req.body.updatedOn || currentDate
   const imagePath = makeid(20)
-  let offerQrCodePath = `/${imagePath}.png`
+  //let offerQrCodePath = `/${imagePath}.png`
 
   //let qrRes = await qrcode.toDataURL(`http://tcp.com/${mainOfferID}`);
   let qrRes = await qrcode.toDataURL(description);
   let base64Image = qrRes.split(';base64,').pop();
+  const uploadRes = await uploadImageToImgUr(base64Image)
 
-  fs.writeFile(`./public/${imagePath}.png`, base64Image, {encoding: 'base64'}, async (err) => {
-    if(err) {
-      res.json({status : false , message : err.message})
-    }
-
-
+  if(uploadRes.status){
+    let offerQrCodePath = uploadRes.imgUrl
     let responseD = await Offer.save({
       mainOfferID ,offerImages ,offerTitle ,description ,tAndC ,availSteps ,expiryDate ,createdOn ,updatedOn, offerQrCodePath
     })
-  
     res.status(200).json(responseD)
+  }else {
+    res.status(200).json(responseD)
+  }
 
-  });
+  // fs.writeFile(`./public/${imagePath}.png`, base64Image, {encoding: 'base64'}, async (err) => {
+  //   if(err) {
+  //     res.json({status : false , message : err.message})
+  //   }
+  //   let responseD = await Offer.save({
+  //     mainOfferID ,offerImages ,offerTitle ,description ,tAndC ,availSteps ,expiryDate ,createdOn ,updatedOn, offerQrCodePath
+  //   })
+  //   res.status(200).json(responseD)
+  // });
 
-
-  
 }
 
 
 
+const uploadImageToImgUr = async (base64) => {
 
+  let uploadRes = {}
+
+  const form = new FormData()
+  form.append('image' , base64)
+  try {
+
+    const res_d = await fetch('https://api.imgur.com/3/upload', 
+    { 
+      method: 'POST', 
+      body: form,
+      headers : { 'Authorization': 'Client-Id 20317a5496712ab' } 
+    })
+
+    const resData = await res_d.json()
+
+    if(resData.status === 200){
+      if(resData.data.link){
+        uploadRes = {status : true , imgUrl : resData.data.link}
+      }else {
+        uploadRes = {status : false , message : `Image URL not found`}
+      }
+    }else {
+      uploadRes = {status : false , message : `Image not uploaded to imgur ${resData.status}`}
+    }
+  } catch (error) {
+    uploadRes = {status : false , message : error.message}
+  }
+  return uploadRes
+}
 
 
 function makeid(length) {
