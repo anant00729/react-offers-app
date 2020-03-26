@@ -8,6 +8,13 @@ exports.getAllOffers = async (req,res) => {
   res.status(200).json(responseD)
 }
 
+
+exports.deleteAllOffers = async (req,res) => {
+  let responseD = await Offer.deleteAll()
+  res.status(200).json(responseD)
+}
+
+
 exports.addOffer = async (req,res) => {
   const date = new Date()
   const currentDate = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`
@@ -45,6 +52,9 @@ exports.addOffer = async (req,res) => {
 
   
 }
+
+
+
 
 
 

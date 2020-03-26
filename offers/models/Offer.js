@@ -58,6 +58,17 @@ class Offer {
       return { status : false , message : error.message  }
     }
   }
+
+  static async deleteAll(){
+    let q1 = `TRUNCATE TABLE public.offers;`
+    
+    try {
+      const res_d = await db.query(q1)
+      return { status : true , message : '' , offerList : res_d[0] }
+    } catch (error) {
+      return { status : false , message : error.message  }
+    }
+  }
     
 }
 
