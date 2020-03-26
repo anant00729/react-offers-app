@@ -77,16 +77,11 @@ export const ImageDialog = () => {
 
         <img 
         className="w-56 mx-auto"
-        src={`https://offers-a.herokuapp.com${offerQrCodePath}`}
+        src={`${offerQrCodePath}`}
         alt="image_dailog"/>
-
-        
-
-
         
         {/* <!--Footer--> */}
         <div className="flex justify-end pt-2">
-          
         </div>
         
       </div>
