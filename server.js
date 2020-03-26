@@ -5,10 +5,7 @@ const cors = require('cors')
 const db = require('./config/database')
 const qrcode = require('qrcode')
 const fs = require('fs')
-
-
-
-// const path = require('path')
+const path = require('path')
 // const request = require('request')
 // const http = require('http') 
 // const fetch = require('node-fetch');
@@ -65,6 +62,12 @@ app.use(express.static('public/build'));
 app.use(express.static('public'));
 
 
+app.get('/test', (req,res)=> {
+  res.json({statsU : true})
+})
+
+
+
 
 app.get('*', (req,res)=> {
     ///app.use(express.static('public/build'))
@@ -73,6 +76,8 @@ app.get('*', (req,res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
     //res.sendFile(path.resolve(__dirname, 'public/build', 'index.html'))
 })
+
+
 
 // app.get('*', (req,res)=> {
 //   res.json({

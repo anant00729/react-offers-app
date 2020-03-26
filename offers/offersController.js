@@ -21,13 +21,14 @@ exports.addOffer = async (req,res) => {
   const expiryDate = req.body.expiryDate || currentDate
   const createdOn = req.body.createdOn || currentDate
   const updatedOn = req.body.updatedOn || currentDate
-  let offerQrCodePath = `/${mainOfferID}.png`
+  const imagePath = makeid(20)
+  let offerQrCodePath = `/${imagePath}.png`
 
   //let qrRes = await qrcode.toDataURL(`http://tcp.com/${mainOfferID}`);
   let qrRes = await qrcode.toDataURL(description);
   let base64Image = qrRes.split(';base64,').pop();
 
-  fs.writeFile(`./public/${mainOfferID}.png`, base64Image, {encoding: 'base64'}, async (err) => {
+  fs.writeFile(`./public/${imagePath}.png`, base64Image, {encoding: 'base64'}, async (err) => {
     if(err) {
       res.json({status : false , message : err.message})
     }
@@ -45,5 +46,16 @@ exports.addOffer = async (req,res) => {
   
 }
 
+
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
 

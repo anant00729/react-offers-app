@@ -80,10 +80,10 @@ In 5. categoryId is Optional
 
 
 
-1. OFFER_DETAILS_WITH_AUTOCOLLECT -> com.tcp://offers?type=offerDetailsWithAutoCollect&offerId=”TCP_Demo7”
-2. OFFER_DETAILS_WITHOUT_COLLECT -> com.tcp://offers?type=offerDetailsWithoutCollect&offerId=”TCP_Demo7”
-3. OFFER_ADD_TO_CALENDAR -> com.tcp://offers?type=offerAddToCalendar&offerId=”TCP_Demo7”
-4. OFFERS_FILTER_BY_STORE -> com.tcp://offers?type=offerFilterByStore&storeId="A160”&categoryId=""
+1. OFFER_DETAILS_WITH_AUTOCOLLECT -> com.tcp://offers?type=offerDetailsWithAutoCollect&offerId=TD_Demo7 -- done
+2. OFFER_DETAILS_WITHOUT_COLLECT -> com.tcp://offers?type=offerDetailsWithoutCollect&offerId=TD_Demo7 -- done
+3. OFFER_ADD_TO_CALENDAR -> com.tcp://offers?type=offerAddToCalendar&offerId=TD_Demo7 -- done
+4. OFFERS_FILTER_BY_STORE -> com.tcp://offers?type=offerFilterByStore&storeId=A160&categoryId= -- done
 // Api For SPECIAL_OFFERS_FOR_YOU is not yet decided.
 5. SPECIAL_OFFERS_FOR_YOU -> com.tcp://offers?type=specialOffersForYou
 
