@@ -80,6 +80,9 @@ In 5. categoryId is Optional
 
 
 
+LIMITED offerDetailsWithoutCollect TD_Demo11
+com.tcp://offers?type=offerDetailsWithoutCollect&offerId=TD_Demo11
+
 1. OFFER_DETAILS_WITH_AUTOCOLLECT -> com.tcp://offers?type=offerDetailsWithAutoCollect&offerId=TD_Demo7 -- done
 2. OFFER_DETAILS_WITHOUT_COLLECT -> com.tcp://offers?type=offerDetailsWithoutCollect&offerId=TD_Demo7 -- done
 3. OFFER_ADD_TO_CALENDAR -> com.tcp://offers?type=offerAddToCalendar&offerId=TD_Demo7 -- done
@@ -88,5 +91,247 @@ In 5. categoryId is Optional
 5. SPECIAL_OFFERS_FOR_YOU -> com.tcp://offers?type=specialOffersForYou
 
 
+
+Story Covered So far:
+    1. Scan QR code. 
+    2. Take the user to the Offer Details Page.
+    3. Show a Dialog Box to ask the user to add the offer to the calendar.
+    4. on pressing “OK“ take the user to the Google Calendar. 
+    5. Google Calendar will have following information: 
+        5.1 Offer Description -- present
+        5.2 Offer Title -- not available -- have asked OE to provide
+        5.3 Offer Link -- not available -- need link to be gernerated from ResulteX) 
+        5.4 Start Date and Time -- not available -- have asked OE to provide
+    6. User saves the Event in the Google calendar app.
+
+Story after scheduling event in calendar:
+    7. On getting notification of the scheduled event from Google calendar app, the user open the calendar app.
+    clicks on the link.
+    8. On Clicking Link, The TCP app opens Home Page. 
+    9. Home Page will present a special Widget that contains Informtion of Offer with its LIMITED availbility.
+
+    
+
+
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llMainFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardOfferDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/vp_single_offer_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_offer_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/black_900_trans_50"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp" />
+
+
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/details_tab_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:tabBackground="@drawable/dot_selector"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        android:hapticFeedbackEnabled="true"
+                        android:layout_gravity="center|bottom"
+                        />
+
+
+                </FrameLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <include
+                android:id="@+id/offer_type_item"
+                layout="@layout/offer_type_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/cardOfferDetail" />
+
+
+
+            <TextView
+                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/padding_small"
+                android:id="@+id/tvShareLeft"
+                android:gravity="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offer_type_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvSharedByUser"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/shared_by"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvShareLeft" />
+
+
+            <TextView
+                android:id="@+id/tvAvailPlaceholder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="How to avail?"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvSharedByUser" />
+
+
+            <TextView
+                android:id="@+id/tv_single_offer_avial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvAvailPlaceholder" />
+
+
+            <TextView
+                android:id="@+id/tvOfferDuationPlaceholder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Offer Duration"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tv_single_offer_avial" />
+
+
+            <TextView
+                android:id="@+id/tv_single_offer_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvOfferDuationPlaceholder" />
+
+
+            <TextView
+                android:id="@+id/tvTermsAndConditionPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Terms and conditions"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tv_single_offer_duration" />
+
+
+            <TextView
+                android:id="@+id/tv_single_offer_tnc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@id/cardOfferDetail"
+                app:layout_constraintStart_toStartOf="@id/cardOfferDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvTermsAndConditionPlaceholder" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/black_900"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/noOfferNotFoundViewGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        >
+        <Button
+            android:id="@+id/btnEnableGoBack"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/offer_not_found"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+
+</RelativeLayout>
 
 
